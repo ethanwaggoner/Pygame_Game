@@ -21,6 +21,9 @@ class Player(Entity):
             self.convimages.append(image)
 
     def render(self, display, x, y):
-        display.blit(self.convimages[0], (self.start_positionX + x, self.start_positionY + y))
+        image = self.convimages[0]
+        image_size = image.get_size()
+        big_image = pygame.transform.scale(image, (int(image_size[0]*2), int(image_size[1]*2)))
+        display.blit(big_image, (self.start_positionX + x, self.start_positionY + y))
 
 
