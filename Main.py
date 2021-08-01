@@ -15,10 +15,22 @@ displaySurface.fill((255, 255, 255))
 startX = 0
 startY = 0
 velocity = 10
+walkCount = 0
+
 
 Assets = Assets()
 Background1 = Background(Assets.Level1, displaySurface)
 Player = Player()
+
+
+def draw():
+    displaySurface.fill((255, 255, 255))
+    Background1.render()
+    Player.render(displaySurface, startX, startY)
+    Player.update()
+    pygame.display.update()
+    FPS_CLOCK.tick(FPS)
+
 
 boole = True
 while boole:
@@ -32,15 +44,15 @@ while boole:
 
     if keys[pygame.K_d]:
         startX += velocity
-    if keys[pygame.K_a]:
+        Player.run()
+    elif keys[pygame.K_a]:
         startX -= velocity
-    if keys[pygame.K_s]:
+        Player.run()
+    elif keys[pygame.K_s]:
         startY += velocity
-    if keys[pygame.K_w]:
+        Player.run()
+    elif keys[pygame.K_w]:
         startY -= velocity
+        Player.run()
 
-    displaySurface.fill((255, 255, 255))
-    Background1.render()
-    Player.render(displaySurface, startX, startY)
-    pygame.display.update()
-    FPS_CLOCK.tick(FPS)
+    draw()
