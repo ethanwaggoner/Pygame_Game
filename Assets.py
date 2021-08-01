@@ -18,6 +18,11 @@ class Assets:
                                 pygame.image.load("Assets/Player/Walk_Right/adventurer-run-04.png").convert_alpha(),
                                 pygame.image.load("Assets/Player/Walk_Right/adventurer-run-05.png").convert_alpha()]
 
+        self.playerJump = [pygame.image.load("Assets/Player/Jump/adventurer-jump-00.png").convert_alpha(),
+                           pygame.image.load("Assets/Player/Jump/adventurer-jump-01.png").convert_alpha(),
+                           pygame.image.load("Assets/Player/Jump/adventurer-jump-02.png").convert_alpha(),
+                           pygame.image.load("Assets/Player/Jump/adventurer-jump-03.png").convert_alpha()]
+
 
 
 

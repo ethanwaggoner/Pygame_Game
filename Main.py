@@ -11,11 +11,10 @@ FPS = 60
 FPS_CLOCK = pygame.time.Clock()
 displaySurface = pygame.display.set_mode((1920, 1080))
 displaySurface.fill((255, 255, 255))
-startX = 0
-startY = 0
-velocity = 10
-walkCount = 0
-
+posX = 0
+posY = 0
+velocity = 8
+jumpHeight = 10
 
 Assets = Assets()
 Background1 = Background(Assets.Level1, displaySurface)
@@ -23,9 +22,8 @@ Player = Player()
 
 
 def draw():
-    displaySurface.fill((255, 255, 255))
     Background1.render()
-    Player.render_player(displaySurface, startX, startY)
+    Player.render_player(displaySurface, posX, posY)
     Player.update()
     pygame.display.update()
     FPS_CLOCK.tick(FPS)
@@ -36,16 +34,27 @@ while boole:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
             boole = False
 
     keys = pygame.key.get_pressed()
+    playerX = Player.get_x(Player.start_positionX, posX)
+    playerY = Player.get_y(Player.start_positionY, posY)
 
-    if keys[pygame.K_d]:
-        startX += velocity
+    if keys[pygame.K_d] and playerX < 1920 - Player.player_width:
+        posX += velocity
         Player.run()
-    elif keys[pygame.K_a]:
-        startX -= velocity
+    if keys[pygame.K_a] and playerX > 0 + Player.player_width:
+        posX -= velocity
         Player.run()
+    if keys[pygame.K_w]:
+        Player.jump()
+        if jumpHeight >= -10:
+            posY -= (jumpHeight * abs(jumpHeight)) * 0.5
+            jumpHeight -= 1
+    else:
+        # if the player isn't on the ground, return at a speed of 20
+        jumpHeight = 10
+        if posY <= 0:
+            posY += 20
 
     draw()

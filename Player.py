@@ -10,16 +10,30 @@ class Player(Entity):
         player_assets = Assets()
 
         self.is_running = False
+        self.is_jumping = False
+
         self.player_walk = player_assets.playerWalkRight
         self.idles = player_assets.playerIdle
+        self.jump_list = player_assets.playerJump
+
         self.current_sprite = 0
+
         self.image = self.player_walk[self.current_sprite]
         self.idle_image = self.idles[self.current_sprite]
+        self.jump_image = self.jump_list[self.current_sprite]
 
+        self.scaling = 3
+        self.player_width = self.idle_image.get_width() * 2
         self.start_positionX = 500
         self.start_positionY = 850
 
-        width, height = pygame.display.get_surface().get_size()
+    @staticmethod
+    def get_x(start_x, x):
+        return start_x + x
+
+    @staticmethod
+    def get_y(start_y, y):
+        return start_y + y
 
     @staticmethod
     def resize(image, scaling):
@@ -29,6 +43,9 @@ class Player(Entity):
     def run(self):
         self.is_running = True
 
+    def jump(self):
+        self.is_jumping = True
+
     def update(self):
         if self.is_running:
             self.current_sprite += 0.15
@@ -36,19 +53,34 @@ class Player(Entity):
                 self.current_sprite = 0
                 self.is_running = False
             self.image = self.player_walk[int(self.current_sprite)]
-        elif not self.is_running:
+
+        if self.is_jumping:
+            self.current_sprite += 0.15
+            if self.current_sprite >= len(self.jump_list):
+                self.current_sprite = 0
+                self.is_jumping = False
+                self.jump_image = self.jump_list[int(self.current_sprite)]
+
+        if not self.is_running and not self.is_jumping:
             self.current_sprite += 0.15
             if self.current_sprite >= len(self.idles):
                 self.current_sprite = 0
             self.idle_image = self.idles[int(self.current_sprite)]
 
     def render_player(self, display, x, y):
-        if self.is_running:
-            big_image = self.resize(self.image, 3)
+        if self.is_running and not self.is_jumping:
+            big_image = self.resize(self.image, self.scaling)
             display.blit(big_image, (self.start_positionX + x, self.start_positionY + y))
-        else:
-            big_idle = self.resize(self.idle_image, 3)
+
+        elif self.is_jumping:
+            big_jump = self.resize(self.jump_image, self.scaling)
+            display.blit(big_jump, (self.start_positionX + x, self.start_positionY + y))
+
+        elif not self.is_running and not self.is_jumping:
+            big_idle = self.resize(self.idle_image, self.scaling)
             display.blit(big_idle, (self.start_positionX + x, self.start_positionY + y))
+
+
 
 
 
