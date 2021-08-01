@@ -1,2 +1,3 @@
 # Pygame_Game
-![image](https://user-images.githubusercontent.com/74027222/127755197-42261a91-c2a2-4aff-b67c-53d26e30a2a3.png)
+
+![image](https://user-images.githubusercontent.com/74027222/127755780-f3c437e8-afeb-48b3-b928-e4e0f02e9d09.png)
