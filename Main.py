@@ -42,11 +42,11 @@ while boole:
 
     if keys[pygame.K_d] and playerX < 1920 - Player.player_width:
         posX += velocity
-        Player.run()
+        Player.run_right()
     if keys[pygame.K_a] and playerX > 0 + Player.player_width:
         posX -= velocity
-        Player.run()
-    if keys[pygame.K_w]:
+        Player.run_left()
+    if keys[pygame.K_w] and playerY > 0 + Player.player_height:
         Player.jump()
         if jumpHeight >= -10:
             posY -= (jumpHeight * abs(jumpHeight)) * 0.5
