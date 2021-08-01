@@ -4,7 +4,6 @@ from Menu import Menu
 from Background import Background
 from Assets import Assets
 import pygame
-import sys
 
 pygame.init()
 pygame.display.set_caption("Yo")
@@ -26,7 +25,7 @@ Player = Player()
 def draw():
     displaySurface.fill((255, 255, 255))
     Background1.render()
-    Player.render(displaySurface, startX, startY)
+    Player.render_player(displaySurface, startX, startY)
     Player.update()
     pygame.display.update()
     FPS_CLOCK.tick(FPS)
@@ -47,12 +46,6 @@ while boole:
         Player.run()
     elif keys[pygame.K_a]:
         startX -= velocity
-        Player.run()
-    elif keys[pygame.K_s]:
-        startY += velocity
-        Player.run()
-    elif keys[pygame.K_w]:
-        startY -= velocity
         Player.run()
 
     draw()
