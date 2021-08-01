@@ -13,7 +13,7 @@ displaySurface = pygame.display.set_mode((1920, 1080))
 displaySurface.fill((255, 255, 255))
 posX = 0
 posY = 0
-velocity = 8
+velocity = 10
 jumpHeight = 10
 
 Assets = Assets()
