@@ -28,13 +28,13 @@ class Player(Entity):
 
     def update(self):
         if self.is_running:
-            self.current_sprite += 0.2
+            self.current_sprite += 0.15
             if self.current_sprite >= len(self.images):
                 self.current_sprite = 0
                 self.is_running = False
             self.image = self.images[int(self.current_sprite)]
         elif not self.is_running:
-            self.current_sprite += 0.2
+            self.current_sprite += 0.15
             if self.current_sprite >= len(self.idles):
                 self.current_sprite = 0
             self.idle_image = self.idles[int(self.current_sprite)]
