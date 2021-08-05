@@ -5,9 +5,10 @@ import pygame
 
 class Player(Entity):
 
-    def __init__(self):
+    def __init__(self, player_assets):
         pygame.sprite.Sprite.__init__(self)
-        player_assets = Assets()
+
+        self.player_assets = player_assets
 
         self.is_running_right = False
         self.is_running_left = False
@@ -71,7 +72,7 @@ class Player(Entity):
             if self.current_sprite >= len(self.jump_list):
                 self.current_sprite = 0
                 self.is_jumping = False
-                self.jump_image = self.jump_list[int(self.current_sprite)]
+            self.jump_image = self.jump_list[int(self.current_sprite)]
 
         if not self.is_running_right and not self.is_running_left and not self.is_jumping:
             self.current_sprite += 0.15

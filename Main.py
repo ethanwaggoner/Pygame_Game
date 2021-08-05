@@ -15,14 +15,16 @@ posX = 0
 posY = 0
 velocity = 10
 jumpHeight = 10
+level = 1
 
 Assets = Assets()
+Player = Player(Assets)
 Background1 = Background(Assets.Level1, displaySurface)
-Player = Player()
+Background2 = Background(Assets.Level2, displaySurface)
 
 
-def draw():
-    Background1.render()
+def draw(background):
+    background.render()
     Player.render_player(displaySurface, posX, posY)
     Player.update()
     pygame.display.update()
@@ -32,18 +34,18 @@ def draw():
 boole = True
 while boole:
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            boole = False
-
     keys = pygame.key.get_pressed()
     playerX = Player.get_x(Player.start_positionX, posX)
     playerY = Player.get_y(Player.start_positionY, posY)
 
-    if keys[pygame.K_d] and playerX < 1920 - Player.player_width:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            boole = False
+
+    if keys[pygame.K_d] and playerX < 1850:
         posX += velocity
         Player.run_right()
-    if keys[pygame.K_a] and playerX > 0 + Player.player_width:
+    if keys[pygame.K_a] and playerX > -100:
         posX -= velocity
         Player.run_left()
     if keys[pygame.K_w] and playerY > 0 + Player.player_height:
@@ -57,4 +59,17 @@ while boole:
         if posY <= 0:
             posY += 20
 
-    draw()
+    if level == 1:
+        draw(Background1)
+    elif level == 2:
+        draw(Background2)
+
+    if playerX >= 1850 and level == 1:
+        Player.start_positionX = -1350
+        Player.start_positionY = 750
+        level = 2
+    elif playerX < 0 and level == 2:
+        Player.start_positionX = 500
+        Player.start_positionY = 850
+        level = 1
+

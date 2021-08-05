@@ -4,7 +4,7 @@ import pygame
 class Assets:
     def __init__(self):
         self.Level1 = pygame.image.load("Assets/Backgrounds/Level1.png").convert()
-        self.Level2 = pygame.image.load("Assets/Backgrounds/Level2.jpg").convert()
+        self.Level2 = pygame.image.load("Assets/Backgrounds/Level2.png").convert()
 
         self.playerIdle = [pygame.image.load("Assets/Player/Idle/adventurer-idle-2-00.png").convert_alpha(),
                            pygame.image.load("Assets/Player/Idle/adventurer-idle-2-01.png").convert_alpha(),
