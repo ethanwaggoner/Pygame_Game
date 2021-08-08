@@ -41,4 +41,14 @@ class Assets:
                            pygame.image.load("Assets/Enemies/Enemy1Walk/Bringer-of-Death_Walk_7.png").convert_alpha(),
                            pygame.image.load("Assets/Enemies/Enemy1Walk/Bringer-of-Death_Walk_8.png").convert_alpha()]
 
+        self.enemy1Att = [pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_1.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_2.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_3.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_4.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_5.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_6.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_7.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_8.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_9.png").convert_alpha(),
+                          pygame.image.load("Assets/Enemies/Enemy1Attack/Bringer-of-Death_Attack_10.png").convert_alpha()]
 

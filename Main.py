@@ -78,13 +78,12 @@ while boole:
         level = 1
 
     if enemyCords[0] - 100 >= playerCords[0]:
-        enemy1PosX -= 3.5
+        enemy1PosX -= 3
         Enemy1.run_left()
     elif enemyCords[0] + 100 <= playerCords[0]:
-        enemy1PosX += 3.5
-        Enemy1.run_right()
-    if enemyCords[0] < playerCords[0]:
+        enemy1PosX += 3
         Enemy1.face_right()
+        Enemy1.run_right()
 
     print("Player X: " + str(playerCords[0]))
     print("Enemy1 X: " + str(enemyCords[0]))
