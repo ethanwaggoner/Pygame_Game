@@ -4,8 +4,8 @@ import pygame
 
 class Player(Entity):
 
-    def __init__(self, player_assets: object):
-        super().__init__(attack=50, health=100, start_x=500, start_y=850)
+    def __init__(self, health, attack, start_x, start_y, player_assets: object):
+        super().__init__(health, attack, start_x, start_y)
 
         self.player_assets = player_assets
 

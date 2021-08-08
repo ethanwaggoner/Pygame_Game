@@ -14,3 +14,8 @@ class Enemy(Entity):
         self.idle_list = enemy_assets.enemy1Idle
         self.walk_list = enemy_assets.enemy1Walk
 
+    def update(self):
+        pass
+
+    def render_enemy(self, display, x, y):
+        pass
