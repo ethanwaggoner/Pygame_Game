@@ -9,7 +9,8 @@ pygame.init()
 pygame.display.set_caption("Yo")
 FPS = 60
 FPS_CLOCK = pygame.time.Clock()
-displaySurface = pygame.display.set_mode((1920, 1080))
+resolutionObject = pygame.display.Info()
+displaySurface = pygame.display.set_mode((resolutionObject.current_w, resolutionObject.current_h))
 displaySurface.fill((255, 255, 255))
 playerPosX, playerPosY = 0, 0
 enemy1PosX, enemy1PosY = 0, 0
@@ -85,8 +86,8 @@ while boole:
         Enemy1.face_right()
         Enemy1.run_right()
 
-    print("Player X: " + str(playerCords[0]))
-    print("Enemy1 X: " + str(enemyCords[0]))
+    #  print("Player X: " + str(playerCords[0]))
+    #  print("Enemy1 X: " + str(enemyCords[0]))
 
 
 

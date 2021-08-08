@@ -1,9 +1,8 @@
 import pygame
 
 
-class Background(pygame.sprite.Sprite):
+class Background:
     def __init__(self, background, surface):
-        super().__init__()
         self.background = background
         self.surface = surface
         self.rectBackgroundImg = self.background.get_rect()
