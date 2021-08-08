@@ -35,20 +35,19 @@ boole = True
 while boole:
 
     keys = pygame.key.get_pressed()
-    playerX = Player.get_x(Player.start_positionX, posX)
-    playerY = Player.get_y(Player.start_positionY, posY)
+    playerCords = Player.get_cords(posX, posY)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             boole = False
 
-    if keys[pygame.K_d] and playerX < 1850:
+    if keys[pygame.K_d] and playerCords[0] < 1850:
         posX += velocity
         Player.run_right()
-    if keys[pygame.K_a] and playerX > -100:
+    if keys[pygame.K_a] and playerCords[0] > -100:
         posX -= velocity
         Player.run_left()
-    if keys[pygame.K_w] and playerY > 0 + Player.player_height:
+    if keys[pygame.K_w] and playerCords[1] > 0 + Player.player_height:
         Player.jump()
         if jumpHeight >= -10:
             posY -= (jumpHeight * abs(jumpHeight)) * 0.5
@@ -64,12 +63,12 @@ while boole:
     elif level == 2:
         draw(Background2)
 
-    if playerX >= 1850 and level == 1:
-        Player.start_positionX = -1350
-        Player.start_positionY = 750
+    if playerCords[0] >= 1850 and level == 1:
+        Player.start_x = -1350
+        Player.start_y = 750
         level = 2
-    elif playerX < 0 and level == 2:
-        Player.start_positionX = 500
-        Player.start_positionY = 850
+    elif playerCords[0] < 0 and level == 2:
+        Player.start_x = 500
+        Player.start_y = 850
         level = 1
 
