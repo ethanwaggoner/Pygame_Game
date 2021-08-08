@@ -53,10 +53,10 @@ while boole:
             posY -= (jumpHeight * abs(jumpHeight)) * 0.5
             jumpHeight -= 1
     else:
-        # if the player isn't on the ground, return at a speed of 20
+        #  gravity
         jumpHeight = 10
         if posY <= 0:
-            posY += 20
+            posY += 50
 
     if level == 1:
         draw(Background1)
