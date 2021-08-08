@@ -9,10 +9,6 @@ class Player(Entity):
 
         self.player_assets = player_assets
 
-        self.is_running_right = False
-        self.is_running_left = False
-        self.is_jumping = False
-
         self.player_walk = player_assets.playerWalkRight
         self.idles = player_assets.playerIdle
         self.jump_list = player_assets.playerJump
@@ -26,15 +22,6 @@ class Player(Entity):
         self.scaling = 3
         self.player_width = self.idle_image.get_width() * 2
         self.player_height = self.idle_image.get_height() * 2
-
-    def run_right(self):
-        self.is_running_right = True
-
-    def run_left(self):
-        self.is_running_left = True
-
-    def jump(self):
-        self.is_jumping = True
 
     def animate(self, image_list):
         self.current_sprite += 0.15

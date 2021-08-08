@@ -11,24 +11,26 @@ FPS = 60
 FPS_CLOCK = pygame.time.Clock()
 displaySurface = pygame.display.set_mode((1920, 1080))
 displaySurface.fill((255, 255, 255))
-playerPosX, playerPosY, enemy1PosX, enemy1PosY = 0, 0, 0, 0
+playerPosX, playerPosY = 0, 0
+enemy1PosX, enemy1PosY = 0, 0
 velocity = 10
 jumpHeight = 10
 level = 1
 
 Assets = Assets()
 Player = Player(100, 25, 500, 850, Assets)
-Enemy1 = Enemy(50, 20, 500, 850, Assets)
+Enemy1 = Enemy(50, 20, 1050, 600, Assets)
 Background1 = Background(Assets.Level1, displaySurface)
 Background2 = Background(Assets.Level2, displaySurface)
 
 
-def draw(background):
+def draw(background, get_level):
     background.render()
     Player.render_player(displaySurface, playerPosX, playerPosY)
-    Enemy1.render_enemy(displaySurface, enemy1PosX, enemy1PosY)
     Player.update()
-    Enemy1.update()
+    if get_level == 2:
+        Enemy1.render_enemy(displaySurface, enemy1PosX, enemy1PosY)
+        Enemy1.update()
     pygame.display.update()
     FPS_CLOCK.tick(FPS)
 
@@ -38,6 +40,12 @@ while boole:
 
     keys = pygame.key.get_pressed()
     playerCords = Player.get_cords(playerPosX, playerPosY)
+    enemyCords = Enemy1.get_cords(enemy1PosX, enemy1PosY)
+
+    if level == 1:
+        draw(Background1, level)
+    elif level == 2:
+        draw(Background2, level)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -60,11 +68,6 @@ while boole:
         if playerPosY <= 0:
             playerPosY += 50
 
-    if level == 1:
-        draw(Background1)
-    elif level == 2:
-        draw(Background2)
-
     if playerCords[0] >= 1850 and level == 1:
         Player.start_x = -1350
         Player.start_y = 750
@@ -73,4 +76,19 @@ while boole:
         Player.start_x = 500
         Player.start_y = 850
         level = 1
+
+    if enemyCords[0] - 100 >= playerCords[0]:
+        enemy1PosX -= 3.5
+        Enemy1.run_left()
+    elif enemyCords[0] + 100 <= playerCords[0]:
+        enemy1PosX += 3.5
+        Enemy1.run_right()
+    if enemyCords[0] < playerCords[0]:
+        Enemy1.face_right()
+
+    print("Player X: " + str(playerCords[0]))
+    print("Enemy1 X: " + str(enemyCords[0]))
+
+
+
 
